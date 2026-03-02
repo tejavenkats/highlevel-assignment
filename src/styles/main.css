@@ -1,0 +1,361 @@
+:root {
+  color-scheme: light;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #102542;
+  background:
+    radial-gradient(circle at top right, rgba(125, 211, 252, 0.6), transparent 32%),
+    radial-gradient(circle at bottom left, rgba(191, 219, 254, 0.85), transparent 35%),
+    linear-gradient(140deg, #eef6ff 0%, #f8fafc 48%, #ecfeff 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.app-shell {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.hero,
+.panel,
+.board-shell {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.hero h1,
+.panel h2,
+.board-shell h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  line-height: 1.1;
+}
+
+.hero-copy {
+  margin: 0.75rem 0 0;
+  max-width: 42rem;
+  color: #475569;
+}
+
+.hero-actions,
+.panel-header--row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.workspace-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 280px minmax(0, 1fr) 320px;
+  align-items: start;
+}
+
+.panel,
+.board-shell {
+  overflow: hidden;
+}
+
+.panel {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.panel-header {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6366f1;
+}
+
+.palette-list,
+.log-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.palette-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.palette-card {
+  width: 100%;
+  border: 1px solid rgba(99, 102, 241, 0.18);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: linear-gradient(140deg, rgba(238, 242, 255, 0.9), rgba(224, 231, 255, 0.68));
+  text-align: left;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.palette-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(99, 102, 241, 0.15);
+}
+
+.palette-card__title {
+  display: block;
+  font-weight: 700;
+}
+
+.palette-card__description {
+  display: block;
+  margin-top: 0.35rem;
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+.board-shell {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 560px;
+}
+
+.board-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 0;
+}
+
+.board-surface {
+  height: 500px;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.workflow-flow {
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.95), rgba(224, 242, 254, 0.8));
+}
+
+.vue-flow__node {
+  min-width: 180px;
+  border-radius: 1rem;
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  background: #ffffff;
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.08);
+  padding: 0.75rem;
+}
+
+.vue-flow__node-default {
+  border-width: 1px;
+}
+
+.vue-flow__node.selected {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+}
+
+.vue-flow__node-default .vue-flow__node-label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.workflow-flow .vue-flow__handle {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.18);
+  opacity: 0.98;
+}
+
+.workflow-flow .vue-flow__handle::before,
+.workflow-flow .vue-flow__handle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #ffffff;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.workflow-flow .vue-flow__handle::before {
+  width: 8px;
+  height: 2px;
+}
+
+.workflow-flow .vue-flow__handle::after {
+  width: 2px;
+  height: 8px;
+}
+
+.workflow-flow .vue-flow__handle-connecting,
+.workflow-flow .vue-flow__handle-valid,
+.workflow-flow .vue-flow__handle:hover {
+  background: #4338ca;
+  box-shadow: 0 0 0 4px rgba(67, 56, 202, 0.18);
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.field-label,
+.config-title {
+  font-weight: 700;
+}
+
+.config-caption,
+.config-note,
+.empty-state {
+  margin: 0;
+  color: #475569;
+}
+
+.field-input {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  border-radius: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.field-input:focus {
+  outline: 2px solid rgba(99, 102, 241, 0.24);
+  border-color: rgba(99, 102, 241, 0.45);
+}
+
+.field-textarea,
+.code-block {
+  resize: vertical;
+  min-height: 9rem;
+}
+
+.primary-button,
+.ghost-button {
+  border-radius: 999px;
+  padding: 0.8rem 1.1rem;
+  font-weight: 700;
+  border: 0;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #2563eb, #4338ca);
+  color: #fff;
+}
+
+.ghost-button {
+  background: rgba(226, 232, 240, 0.8);
+  color: #102542;
+}
+
+.danger-button {
+  background: rgba(254, 226, 226, 0.9);
+  color: #991b1b;
+}
+
+.import-export-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.log-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.log-list {
+  display: grid;
+  gap: 0.5rem;
+  max-height: 280px;
+  overflow: auto;
+}
+
+.log-list li {
+  border-radius: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  background: rgba(241, 245, 249, 0.9);
+  color: #1e293b;
+}
+
+@media (max-width: 1120px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .board-surface {
+    height: 440px;
+  }
+
+  .import-export-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    padding: 1rem;
+  }
+
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions button,
+  .panel-header--row button {
+    flex: 1 1 180px;
+  }
+}

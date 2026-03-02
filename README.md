@@ -1,5 +1,7 @@
 # Conversation AI Workflow Builder
 
+# highlevel-assignment
+
 This project implements the frontend take-home assignment from the provided PDF: a simplified visual workflow builder inspired by n8n / Node-RED, built with Vue 3.
 
 ## Stack

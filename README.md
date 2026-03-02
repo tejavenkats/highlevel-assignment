@@ -12,7 +12,7 @@ This project implements the frontend take-home assignment from the provided PDF:
 - Vue Flow for the drag-and-drop canvas, node positioning, and connections
 - TypeScript for readable and explicit state models
 
-## Features
+## Basic functionality
 
 - Left-side node palette with `Start`, `Transform`, and `End` nodes
 - Drag-and-drop workflow canvas
@@ -23,7 +23,7 @@ This project implements the frontend take-home assignment from the provided PDF:
 - Import workflow from JSON
 - LocalStorage autosave and restore
 
-## How to run
+## Steps to run locally
 
 1. Install dependencies:
 
@@ -31,17 +31,33 @@ This project implements the frontend take-home assignment from the provided PDF:
 npm install
 ```
 
-2. Start the dev server:
+2. Start the local development server:
 
 ```bash
 npm run dev
 ```
 
-3. Build for production:
+3. Open the Vite URL shown in the terminal, usually `http://localhost:5173`.
+
+4. Build for production:
 
 ```bash
 npm run build
 ```
+
+5. (Optional) Preview the production build:
+
+```bash
+npm run preview
+```
+
+## State management and design
+
+- The application uses a normalized Pinia store as the single source of truth for workflow state.
+- The store keeps canonical graph records (`nodeOrder`, `nodesById`, `edgeOrder`, `edgesById`) instead of persisting full Vue Flow node objects.
+- Vue Flow nodes and edges are derived from canonical state, which keeps the domain model separate from the rendering layer and scales better as the graph grows.
+- Workflow simulation operates on the canonical graph snapshot, so execution logic is decoupled from the canvas library.
+- The UI is intentionally split into palette, canvas, and configuration panels to keep interactions clear and extensible as more node types and settings are added.
 
 ## Project structure
 

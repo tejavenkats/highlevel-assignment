@@ -59,6 +59,14 @@ npm run preview
 - Workflow simulation operates on the canonical graph snapshot, so execution logic is decoupled from the canvas library.
 - The UI is intentionally split into palette, canvas, and configuration panels to keep interactions clear and extensible as more node types and settings are added.
 
+## Deployment
+
+- Live site: [https://tejavenkats.github.io/highlevel-assignment/](https://tejavenkats.github.io/highlevel-assignment/)
+- The app is deployed on GitHub Pages.
+- A GitHub Actions workflow at `.github/workflows/deploy-pages.yml` builds and deploys the site automatically on every push to `main`.
+- The workflow installs dependencies with `npm ci`, runs `npm run build`, uploads the generated `dist/` folder, and publishes it through the official GitHub Pages deploy action.
+- Vite is configured with the repository base path (`/highlevel-assignment/`) so static assets resolve correctly on GitHub Pages.
+
 ## Project structure
 
 - `src/App.vue`: overall page layout and import/export panels
